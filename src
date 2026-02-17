@@ -1,0 +1,56 @@
+# Quantum True Random Number Generator
+# Based on the given algorithm
+
+# Step 5: Import standard Qiskit libraries
+from qiskit import QuantumCircuit, Aer, execute
+from qiskit.visualization import plot_histogram
+
+# Step 10 & 11: Enter number of qubits
+num_qubits = 24
+
+# Step 12 & 13: Enter number of shots
+shots = 65536
+
+# Step 6: Set quantum and classical registers
+qc = QuantumCircuit(num_qubits, num_qubits)
+
+# Step 7: Apply Hadamard gate to all qubits
+for i in range(num_qubits):
+    qc.h(i)
+
+# Step 8: Apply measurement to all qubits
+qc.measure(range(num_qubits), range(num_qubits))
+
+# Display the circuit (optional)
+print("Quantum Circuit:")
+print(qc)
+
+# Step 9: Run cell by cell (Execute circuit)
+
+# Use QASM simulator
+backend = Aer.get_backend('qasm_simulator')
+
+# Execute the circuit
+job = execute(qc, backend=backend, shots=shots)
+
+# Get result
+result = job.result()
+
+# Get measurement counts
+counts = result.get_counts(qc)
+
+# Display results
+print("\nMeasurement Results (Random Numbers):")
+print(counts)
+
+# Step 12: Calculate number of random numbers
+num_random_numbers = num_qubits * shots
+
+print("\nTotal Random Numbers Generated:")
+print(num_random_numbers)
+
+# Optional: Plot histogram
+try:
+    plot_histogram(counts)
+except:
+    pass
