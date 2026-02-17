@@ -1,0 +1,18 @@
+import qiskit
+from qiskit import QuantumCircuit
+from qiskit_aer import Aer
+from qiskit.visualization import plot_histogram
+import matplotlib.pyplot as plt
+
+# Step 10 & 11: Enter number of qubits
+num_qubits = 24
+
+# Step 12 & 13: Enter number of shots
+…num_random_numbers = num_qubits * shots
+
+print("\nTotal Random Numbers Generated:")
+print(num_random_numbers)
+
+# Plot histogram
+plot_histogram(counts)
+plt.show()
